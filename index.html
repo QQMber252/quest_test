@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загадки древнего архива</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Загадки древнего архива</h1>
+
+        <!-- Задание 1 -->
+        <div id="task1" class="task active">
+            <h2>Задание 1: Расшифруйте древний текст</h2>
+            <p>На папирусе написано: <strong>Khoor Zruog</strong>.</p>
+            <p>Используйте онлайн-дешифратор (например, <a href="https://cryptii.com/pipes/caesar-cipher" target="_blank">cryptii.com</a>) для расшифровки текста.</p>
+            <input type="text" id="answer1" placeholder="Введите ответ">
+            <button onclick="checkAnswer(1)">Проверить</button>
+        </div>
+
+        <!-- Задание 2 -->
+        <div id="task2" class="task hidden">
+            <h2>Задание 2: Найдите код в видео</h2>
+            <p>Найдите видео на YouTube под названием "Как строили пирамиды Древнего Египта". В комментариях найдите код, начинающийся с "Код для квеста".</p>
+            <input type="text" id="answer2" placeholder="Введите ответ">
+            <button onclick="checkAnswer(2)">Проверить</button>
+        </div>
+
+        <!-- Задание 3 -->
+        <div id="task3" class="task hidden">
+            <h2>Задание 3: Решите математическую головоломку</h2>
+            <p>Решите уравнение: Сумма чисел равна 15, а их произведение равно 50.</p>
+            <p>Ответ запишите как два числа без пробелов (например, 105).</p>
+            <input type="text" id="answer3" placeholder="Введите ответ">
+            <button onclick="checkAnswer(3)">Проверить</button>
+        </div>
+
+        <!-- Финальное сообщение -->
+        <div id="final-message" class="hidden">
+            <h2>Поздравляем! Вы нашли сокровище!</h2>
+            <p>Код для открытия двери: <strong id="final-code"></strong></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

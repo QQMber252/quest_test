@@ -21,30 +21,30 @@ const users = [
 ];
 
 // Элементы DOM
-const userList = document.getElementById('user-list');
+const userGrid = document.getElementById('user-grid');
 const continueBtn = document.getElementById('continue-btn');
 const selectedCharacter = document.getElementById('selected-character');
 
-// Генерация списка пользователей
+// Генерация плиток пользователей
 users.forEach((user, index) => {
-    const listItem = document.createElement('li');
-    listItem.className = 'user-item';
-    listItem.textContent = `${index + 1}. ${user}`;
-    listItem.addEventListener('click', () => selectUser(listItem, user));
-    userList.appendChild(listItem);
+    const card = document.createElement('div');
+    card.className = 'user-card';
+    card.textContent = `${index + 1}. ${user}`;
+    card.addEventListener('click', () => selectUser(card, user));
+    userGrid.appendChild(card);
 });
 
 // Выбор пользователя
 let selectedUser = null;
 
-function selectUser(selectedItem, user) {
+function selectUser(selectedCard, user) {
     // Убираем выделение у предыдущего выбранного элемента
     if (selectedUser) {
-        document.querySelector('.user-item.selected')?.classList.remove('selected');
+        document.querySelector('.user-card.selected')?.classList.remove('selected');
     }
 
     // Выделяем новый выбранный элемент
-    selectedItem.classList.add('selected');
+    selectedCard.classList.add('selected');
     selectedUser = user;
 
     // Активируем кнопку "Продолжить"

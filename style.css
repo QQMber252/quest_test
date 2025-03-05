@@ -15,25 +15,39 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
 }
 
 .hidden {
     display: none;
 }
 
-#user-list {
-    list-style-type: none;
-    padding: 0;
+#user-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 плитки в строке */
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.user-item {
-    margin: 5px 0;
+.user-card {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация */
 }
 
-.user-item.selected {
-    color: blue;
-    font-weight: bold;
+.user-card:hover {
+    transform: scale(1.1); /* Увеличение при наведении */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+.user-card.selected {
+    border-color: blue;
+    box-shadow: 0 8px 16px rgba(0, 0, 255, 0.3);
 }
 
 button {
@@ -43,6 +57,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 button:disabled {

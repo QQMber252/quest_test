@@ -1,3 +1,4 @@
+/* Общие стили */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,17 +7,27 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f9f9f9;
+    background: url('https://images.unsplash.com/photo-1584278636392-1d9a8c8fbae4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: white; /* Для контраста с темным фоном */
 }
 
 .screen {
     text-align: center;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый фон */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 600px;
+    opacity: 0; /* Начальное состояние - невидимый */
+    transform: translateY(-20px); /* Сдвиг вверх */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Плавная анимация */
+}
+
+.screen.visible {
+    opacity: 1; /* Видимый */
+    transform: translateY(0); /* Возвращаем на место */
 }
 
 .hidden {
@@ -38,6 +49,8 @@ body {
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация */
+    background: rgba(255, 255, 255, 0.9); /* Более видимый фон */
+    color: black; /* Для контраста с белым фоном */
 }
 
 .user-card:hover {
@@ -58,6 +71,11 @@ button {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    transition: background-color 0.3s ease; /* Плавная смена цвета */
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 button:disabled {

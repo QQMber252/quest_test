@@ -1,36 +1,56 @@
-// Правильные ответы
-const correctAnswers = {
-    1: "Hello World",
-    2: "PYR4M1D", // Замените на реальный код из YouTube-видео
-    3: "105"
-};
+// Список пользователей
+const users = [
+    "Анастасия Бобылёва",
+    "Светлана Мытарева",
+    "Анна Бобылева",
+    "Анна Хазиева",
+    "Вероника Семяшова",
+    "Варвара Маслова",
+    "Екатерина Селиванова",
+    "Раиса Гончарова",
+    "Валерия Цвик",
+    "Яна Кузнецова",
+    "Юлия Лукьянова",
+    "Мария Маризоева",
+    "Дарья Сергеева",
+    "Марина Шарапова",
+    "Еремина Олеся",
+    "Татьяна Казиева",
+    "Анастасия Белецкая",
+    "Екатерина Шахватова"
+];
 
-// Глобальные переменные
-let answers = {};
-let finalCode = "";
+// Элементы DOM
+const userList = document.getElementById('user-list');
+const continueBtn = document.getElementById('continue-btn');
+const selectedCharacter = document.getElementById('selected-character');
 
-// Проверка ответа
-function checkAnswer(taskNumber) {
-    const answerInput = document.getElementById(`answer${taskNumber}`);
-    const userAnswer = answerInput.value.trim();
+// Генерация списка пользователей
+users.forEach((user, index) => {
+    const listItem = document.createElement('li');
+    listItem.className = 'user-item';
+    listItem.textContent = `${index + 1}. ${user}`;
+    listItem.addEventListener('click', () => selectUser(user));
+    userList.appendChild(listItem);
+});
 
-    if (userAnswer === correctAnswers[taskNumber]) {
-        alert("Правильно!");
-        answers[taskNumber] = userAnswer;
+// Выбор пользователя
+let selectedUser = null;
 
-        // Показываем следующее задание или финальное сообщение
-        const currentTask = document.getElementById(`task${taskNumber}`);
-        currentTask.classList.add("hidden");
-
-        if (taskNumber < 3) {
-            document.getElementById(`task${taskNumber + 1}`).classList.remove("hidden");
-        } else {
-            // Формируем финальный код
-            finalCode = Object.values(answers).join("");
-            document.getElementById("final-code").textContent = finalCode;
-            document.getElementById("final-message").classList.remove("hidden");
-        }
-    } else {
-        alert("Неправильно. Попробуйте снова.");
+function selectUser(user) {
+    if (selectedUser) {
+        document.querySelector('.user-item.selected').classList.remove('selected');
     }
+    selectedUser = user;
+    document.querySelector(`li:contains("${user}")`).classList.add('selected');
+    continueBtn.disabled = false;
 }
+
+// Продолжить игру
+continueBtn.addEventListener('click', () => {
+    if (selectedUser) {
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        selectedCharacter.textContent = selectedUser;
+    }
+});

@@ -24,6 +24,8 @@ const users = [
 const userGrid = document.getElementById('user-grid');
 const continueBtn = document.getElementById('continue-btn');
 const selectedCharacter = document.getElementById('selected-character');
+const startScreen = document.getElementById('start-screen');
+const gameScreen = document.getElementById('game-screen');
 
 // Генерация плиток пользователей
 users.forEach((user, index) => {
@@ -54,11 +56,22 @@ function selectUser(selectedCard, user) {
 // Продолжить игру
 continueBtn.addEventListener('click', () => {
     if (selectedUser) {
-        // Скрываем стартовую страницу и показываем страницу игры
-        document.getElementById('start-screen').classList.add('hidden');
-        document.getElementById('game-screen').classList.remove('hidden');
+        // Скрываем стартовую страницу
+        startScreen.classList.remove('visible');
+        setTimeout(() => {
+            startScreen.classList.add('hidden'); // После анимации скрываем полностью
+        }, 500);
+
+        // Показываем страницу игры
+        gameScreen.classList.remove('hidden');
+        setTimeout(() => {
+            gameScreen.classList.add('visible'); // После появления делаем видимым
+        }, 100);
 
         // Отображаем выбранное имя
         selectedCharacter.textContent = selectedUser;
     }
 });
+
+// Инициализация: показываем начальную страницу
+startScreen.classList.add('visible');

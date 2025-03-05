@@ -30,27 +30,35 @@ users.forEach((user, index) => {
     const listItem = document.createElement('li');
     listItem.className = 'user-item';
     listItem.textContent = `${index + 1}. ${user}`;
-    listItem.addEventListener('click', () => selectUser(user));
+    listItem.addEventListener('click', () => selectUser(listItem, user));
     userList.appendChild(listItem);
 });
 
 // Выбор пользователя
 let selectedUser = null;
 
-function selectUser(user) {
+function selectUser(selectedItem, user) {
+    // Убираем выделение у предыдущего выбранного элемента
     if (selectedUser) {
-        document.querySelector('.user-item.selected').classList.remove('selected');
+        document.querySelector('.user-item.selected')?.classList.remove('selected');
     }
+
+    // Выделяем новый выбранный элемент
+    selectedItem.classList.add('selected');
     selectedUser = user;
-    document.querySelector(`li:contains("${user}")`).classList.add('selected');
+
+    // Активируем кнопку "Продолжить"
     continueBtn.disabled = false;
 }
 
 // Продолжить игру
 continueBtn.addEventListener('click', () => {
     if (selectedUser) {
+        // Скрываем стартовую страницу и показываем страницу игры
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
+
+        // Отображаем выбранное имя
         selectedCharacter.textContent = selectedUser;
     }
 });
